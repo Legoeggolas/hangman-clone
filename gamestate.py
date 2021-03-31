@@ -13,27 +13,26 @@ class GameState:
     Attributes
     ----------
     difficulty : str
-        An all capital string to represent the difficulty of the game.
+        -- An all capital string to represent the difficulty of the game.
     wordList : list
-        An ordered list that represents the words to be presented to the player.
+        -- An ordered list that represents the words to be presented to the player.
     healthPoints : int
-        The number of tries the user has at the word being presented.
+        -- The number of tries the user has at the word being presented.
     currWordIndex : int
-        The index of the word to be, or being, presented.
+        -- The index of the word to be, or being, presented.
 
     Methods
     -------
     readyState()
-        Readies the state to be used to begin a game.
+        -- Readies the state to be used to begin a game.
     """
 
     def __init__(self, diffmode: str):
         """
         Parameters
         ----------
-        diffmode : str
-            The difficulty selected by the user.
-            Represented by "EASY"/"MEDIUM"/"HARD".
+        diffmode
+            -- The difficulty selected by the user. Represented by "EASY"/"MEDIUM"/"HARD".
         
         Raises
         ------
