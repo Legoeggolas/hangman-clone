@@ -3,7 +3,7 @@
 are presented to the user in the game.
 """
 
-import csv
+from csv import reader
 from random import shuffle
 
 class _Word:
@@ -30,15 +30,16 @@ def _parseWordList(diffmode: str) -> list:
     
     wordList = []
     with open(fname, 'r') as dat:
-        writer = csv.writer(dat)
-        fields = next(writer)
+        filereader = reader(dat)
+        fields = next(filereader)
 
-        for row in writer:
+        for row in filereader:
             wordList.append(_Word(row[0], row[1:]))
     
     return wordList
 
-# Prototype function
+
+
 def generateWordList(diffmode: str) -> list:
     """
     Generates the word list required by the GameState
@@ -48,8 +49,17 @@ def generateWordList(diffmode: str) -> list:
     diffmode 
         -- An uppercase string that represents the difficulty of the game.
     """
+    
+    wordList = []
+    if diffmode == "EASY":
+        wordList.append(_parseWordList("EASY"))
+    elif diffmode == "MEDIUM":
+        wordList.append(_parseWordList("EASY"))
+        wordList.append(_parseWordList("MEDIUM"))
+    else:
+        wordList.append(_parseWordList("MEDIUM"))
+        wordList.append(_parseWordList("HARD"))
 
-    wordList = _parseWordList(diffmode)
     shuffle(wordList)
 
     return wordList
