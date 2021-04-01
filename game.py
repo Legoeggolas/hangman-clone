@@ -34,6 +34,10 @@ while running:
 
         mx, my = pygame.mouse.get_pos()
         #button_1 = pygame.Rect(380, 200, 100, 25)
+
+        s_diff=Font.render('Select difficulty', True, (0,255, 0))
+        screen.blit(s_diff,(350,150))
+
         button_1=Font.render('Easy', True, (255,255, 0),(0, 0, 128))
         screen.blit(button_1,(180,200))
 
@@ -43,9 +47,10 @@ while running:
         button_3=Font.render('Hard', True, (255,255, 0),(0, 0, 128))
         screen.blit(button_3,(600,200))
 
+        '''
         if pygame.mouse.get_pressed()[0] and button_1.collidepoint((mx,my)):
             h_game()
-
+        '''
         #pygame.draw.rect(screen,(0,0,255),button_1)
 
         Health = Font.render('Main Menu', True, (255, 0, 0))
