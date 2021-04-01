@@ -12,6 +12,10 @@ pygame.init()
 # Set the window
 screen = pygame.display.set_mode([500, 500])
 
+health = pygame.font.Font('freesansbold.ttf', 20)
+
+textsurface = health.render('Health bar', False, (0, 128, 0))
+
 # Run until the user clicks on  quit
 running = True
 while running:
@@ -21,5 +25,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    screen.blit(textsurface,(390,10))
     pygame.draw.rect(screen, (0, 128, 0), pygame.Rect(400, 30, 90, 30))     
     pygame.display.flip() 
