@@ -54,3 +54,5 @@ class GameState:
         self.wordList = generateWordList(self.difficulty)
         
         self.healthPoints = (2*len(self.wordList))//(2**(["EASY", "MEDIUM", "HARD"].index(self.difficulty)))
+
+        print(f"GAMESTATE READY WITH: worldListLength={len(self.wordList)}, HP={self.healthPoints}")

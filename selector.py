@@ -22,11 +22,11 @@ class _Word:
 
 def _parseWordList(diffmode: str) -> list:
     if diffmode == "EASY":
-        fname = "easy.csv"
+        fname = r"easy.csv"
     elif diffmode == "MEDIUM":
-        fname = "medium.csv"
+        fname = r"medium.csv"
     else:
-        fname = "hard.csv"
+        fname = r"hard.csv"
     
     wordList = []
     with open(fname, 'r') as dat:
@@ -52,13 +52,13 @@ def generateWordList(diffmode: str) -> list:
     
     wordList = []
     if diffmode == "EASY":
-        wordList.append(_parseWordList("EASY"))
+        wordList.extend(_parseWordList("EASY"))
     elif diffmode == "MEDIUM":
-        wordList.append(_parseWordList("EASY"))
-        wordList.append(_parseWordList("MEDIUM"))
+        wordList.extend(_parseWordList("EASY"))
+        wordList.extend(_parseWordList("MEDIUM"))
     else:
-        wordList.append(_parseWordList("MEDIUM"))
-        wordList.append(_parseWordList("HARD"))
+        wordList.extend(_parseWordList("MEDIUM"))
+        wordList.extend(_parseWordList("HARD"))
 
     shuffle(wordList)
 
