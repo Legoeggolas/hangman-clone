@@ -6,6 +6,62 @@ Holds the GUI as well as the implementation of the game logic.
 
 from gamestate import GameState 
 
+def med():
+    gs= GameState('MEDIUM')
+    running = True
+    
+    while running:
+
+        # Did the user click the window close button?
+        for event in pygame.event.get():
+            screen.fill((0,0,0))
+            if event.type == pygame.QUIT:
+                screen.fill((0,0,0))
+                pygame.quit()
+                sys.exit()
+                running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+                    
+        Hints = Font.render('Hints:', True, (0, 128, 0))
+        
+        screen.blit(Hints,(0,0))   
+        gs.readyState()
+        textsurface = Font.render('HP', True, (0, 128, 0))
+        HP=Font.render(str(gs.healthPoints), True, (0, 128, 0))
+        screen.blit(HP,(800,10))
+        screen.blit(textsurface,(750,10))   
+        pygame.display.flip()
+
+def hard():
+    gs= GameState('HARD')
+    running = True
+    
+    while running:
+
+        # Did the user click the window close button?
+        for event in pygame.event.get():
+            screen.fill((0,0,0))
+            if event.type == pygame.QUIT:
+                screen.fill((0,0,0))
+                pygame.quit()
+                sys.exit()
+                running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+                    
+        Hints = Font.render('Hints:', True, (0, 128, 0))
+        
+        screen.blit(Hints,(0,0))   
+        gs.readyState()
+        textsurface = Font.render('HP', True, (0, 128, 0))
+        HP=Font.render(str(gs.healthPoints), True, (0, 128, 0))
+        screen.blit(HP,(800,10))
+        screen.blit(textsurface,(750,10))   
+        pygame.display.flip()
+
 def easy():
     gs= GameState('EASY')
     running = True
@@ -63,8 +119,16 @@ while running:
                     
 
         if event.type ==  pygame.MOUSEBUTTONDOWN:
-            if 180 <= mouse[0] <= 180+65 and 200 <= mouse[1] <= 200+20:
+            if 180 <= mouse[0] <= 180+65 and 200 <= mouse[1] <= 200+23:
                 easy()
+
+        if event.type ==  pygame.MOUSEBUTTONDOWN:
+            if 380 <= mouse[0] <= 380+101 and 200 <= mouse[1] <= 200+20:
+                med()
+
+        if event.type ==  pygame.MOUSEBUTTONDOWN:
+            if 600 <= mouse[0] <= 600+72 and 200 <= mouse[1] <= 200+20:
+                hard()                
             
         screen.fill((0,0,0))
         mouse = pygame.mouse.get_pos()
