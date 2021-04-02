@@ -13,7 +13,7 @@ pygame.init()
 width=850
 height=500
 
-
+clk=pygame.time.Clock()
 screen = pygame.display.set_mode([width, height])
 pygame.display.set_caption('Hangman')
 Font = pygame.font.Font('freesansbold.ttf', 25)
@@ -25,6 +25,7 @@ def game(gamediff: str):
 
     running = True
     while running:
+          
 
         # Did the user click the window close button?
         for event in pygame.event.get():
@@ -39,16 +40,19 @@ def game(gamediff: str):
                     running = False
                     
         Hints = Font.render('Hints:', True, (0, 128, 0))
+
+        #implementation of game hangaman
         
         screen.blit(Hints,(0,0))   
         textsurface = Font.render('HP', True, (0, 128, 0))
         HP=Font.render(str(gs.healthPoints), True, (0, 128, 0))
         screen.blit(HP,(800,10))
-        screen.blit(textsurface,(750,10))   
+        screen.blit(textsurface,(750,10))  
         pygame.display.flip()
+        clk.tick(30) 
 
 
-
+#main function
 # Run until the user clicks on  quit
 running = True
 while running:
@@ -92,6 +96,6 @@ while running:
         
         
         menu = Font.render('Main Menu', True, (255, 0, 0))
-        screen.blit(menu,((width//2)-50,50))
-          
+        screen.blit(menu,((width//2)-50,50))  
         pygame.display.update()
+        clk.tick(30)
