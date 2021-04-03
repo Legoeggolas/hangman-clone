@@ -42,11 +42,12 @@ def game(gamediff: str):
         Hints = Font.render('Hints:', True, (0, 128, 0))
 
         #implementation of game hangaman
-        
+        Hts=Font.render('Insert hint here', True, (0, 128, 0))
         screen.blit(Hints,(0,0))   
         textsurface = Font.render('HP', True, (0, 128, 0))
         HP=Font.render(str(gs.healthPoints), True, (0, 128, 0))
         screen.blit(HP,(800,10))
+        screen.blit(Hts,(0,30))
         screen.blit(textsurface,(750,10))  
         pygame.display.flip()
         clk.tick(30) 
