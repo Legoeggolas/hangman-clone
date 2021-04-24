@@ -20,11 +20,24 @@ class _Word:
         
         self.dashedWord = list(finword)
         difInt = ["EASY", "MEDIUM", "HARD"].index(self.difficulty)
-        for _ in range((len(finword)+difInt)//(2+difInt)):
+        for _ in range(len(finword) - (len(finword)+difInt)//(2+difInt)):
             dashedWord[randint(0, len(dashedWord))] = "_"
         self.dashedWord = "".join(dashedWord)
         
         self.clueList = clues
+
+    def isFinished(self):
+        return self.finishedWord == self.dashedWord
+    
+    def placeChar(self, char):
+        index = self.dashedWord.find('_')
+
+        if self.finishedWord[index] == char:
+            self.dashedWord[index] = char
+            return True
+        
+        return False
+
     
 
 
