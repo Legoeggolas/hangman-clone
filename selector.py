@@ -19,10 +19,10 @@ class _Word:
         self.finishedWord = finword
         
         self.dashedWord = list(finword)
-        difInt = ["EASY", "MEDIUM", "HARD"].index(self.difficulty)
+        difInt = ["EASY", "MEDIUM", "HARD"].index(diff)
         for _ in range(len(finword) - (len(finword)+difInt)//(2+difInt)):
-            dashedWord[randint(0, len(dashedWord))] = "_"
-        self.dashedWord = "".join(dashedWord)
+            self.dashedWord[randint(0, len(self.dashedWord)-1)] = "_"
+        self.dashedWord = "".join(self.dashedWord)
         
         self.clueList = clues
 
