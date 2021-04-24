@@ -21,7 +21,6 @@ Font = pygame.font.Font('freesansbold.ttf', 25)
 
 def game(gamediff: str):
     gs = GameState(gamediff)
-    gs.readyState()
 
     running = True
     while running:
@@ -41,7 +40,7 @@ def game(gamediff: str):
                     
         Hints = Font.render('Hints:', True, (0, 128, 0))
 
-        #implementation of game hangaman
+        # implementation of game hangman
         Hts=Font.render('Insert hint here', True, (0, 128, 0))
         screen.blit(Hints,(0,0))   
         textsurface = Font.render('HP', True, (0, 128, 0))
@@ -53,7 +52,7 @@ def game(gamediff: str):
         clk.tick(30) 
 
 
-#main function
+# main function
 # Run until the user clicks on  quit
 running = True
 while running:

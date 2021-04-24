@@ -18,13 +18,15 @@ class GameState:
         -- An ordered list that represents the words to be presented to the player.
     healthPoints : int
         -- The number of tries the user has at the word being presented.
-    currWordIndex : int
-        -- The index of the word to be, or being, presented.
+    wordIter : iterator
+        -- Iterator to wordList. Facilitates the fetching of words.
+    currWord : Word
+        -- Holds the word as it is being represented in the game.
 
     Methods
     -------
-    readyState()
-        -- Readies the state to be used to begin a game.
+    getNextWord()
+        -- Updates the word being used in the game.
     """
 
     def __init__(self, diffmode: str):
@@ -44,15 +46,21 @@ class GameState:
             raise ValueError("Unrecognized difficulty")
         
         self.difficulty = diffmode.upper()
-        self.wordList = list()
-        self.healthPoints = 0
-        self.currWordIndex = 0
-    
-    def readyState(self):
-        """Makes the state ready for use in an actual game environment."""
-
         self.wordList = generateWordList(self.difficulty)
-        
-        self.healthPoints = (2*len(self.wordList))//(2**(["EASY", "MEDIUM", "HARD"].index(self.difficulty)))
 
+        difInt = ["EASY", "MEDIUM", "HARD"].index(self.difficulty)
+        self.healthPoints = (2*len(self.wordList))//(2**(difInt))
         print(f"GAMESTATE READY WITH: worldListLength={len(self.wordList)}, HP={self.healthPoints}")
+        
+        self.wordIter = iter(self.wordList)
+        self.currWord = None
+    
+    def getNextWord(self):
+        """Updates the word currently being used in the game to the next on the list."""
+
+        try:
+            nextWord = next(self.wordIter)
+        except StopIteration:
+            nextWord = None
+        
+        self.currWord = nextWord  
