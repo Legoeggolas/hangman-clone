@@ -60,7 +60,9 @@ class GameState:
 
         try:
             nextWord = next(self.wordIter)
+            print("Word fetched: " + nextWord.finishedWord)
         except StopIteration:
+            print("Word list exhausted")
             nextWord = None
         
         self.currWord = nextWord  

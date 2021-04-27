@@ -22,15 +22,18 @@ class _Word:
         difInt = ["EASY", "MEDIUM", "HARD"].index(diff)
         for _ in range(len(finword) - (len(finword)+difInt)//(2+difInt)):
             self.dashedWord[randint(0, len(self.dashedWord)-1)] = "_"
-        self.dashedWord = "".join(self.dashedWord)
         
         self.clueList = clues
-
-    def isFinished(self):
-        return self.finishedWord == self.dashedWord
+    
+    def getDashedWord(self):
+        dword = self.dashedWord[:]
+        for index in range(len(dword)):
+            dword[index] += "   "
+        
+        return "".join(dword)
     
     def placeChar(self, char):
-        index = self.dashedWord.find('_')
+        index = self.dashedWord.index('_')
 
         if self.finishedWord[index] == char:
             self.dashedWord[index] = char
@@ -38,9 +41,11 @@ class _Word:
         
         return False
 
+    def isFinished(self):
+        return self.finishedWord == "".join(self.dashedWord)
+        
+
     
-
-
 def _parseWordList(diffmode: str) -> list:
     if diffmode == "EASY":
         fname = r"easy.csv"
