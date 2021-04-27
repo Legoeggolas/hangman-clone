@@ -5,6 +5,9 @@ are presented to the user in the game.
 
 from csv import reader
 from random import shuffle, randint
+import sys
+import os
+
 
 class _Word:
     """Represents a single word"""
@@ -25,6 +28,7 @@ class _Word:
         
         self.clueList = clues
     
+    # Get a displayable string
     def getDashedWord(self):
         dword = self.dashedWord[:]
         for index in range(len(dword)):
@@ -32,6 +36,7 @@ class _Word:
         
         return "".join(dword)
     
+    # Place a character into the leftmost blank space
     def placeChar(self, char):
         index = self.dashedWord.index('_')
 
@@ -45,17 +50,22 @@ class _Word:
         return self.finishedWord == "".join(self.dashedWord)
         
 
-    
+# Auxiliary function to translate the CSV files into a usable list
 def _parseWordList(diffmode: str) -> list:
+    try:
+        wd = sys._MEIPASS
+    except AttributeError:
+        wd = os.getcwd()
+        
     if diffmode == "EASY":
-        fname = r"easy.csv"
+        file_path = os.path.join(wd,"wordsrc","easy.csv")
     elif diffmode == "MEDIUM":
-        fname = r"medium.csv"
+        file_path = os.path.join(wd,"wordsrc","medium.csv")
     else:
-        fname = r"hard.csv"
+        file_path = os.path.join(wd,"wordsrc","hard.csv")
     
     wordList = []
-    with open(fname, 'r') as dat:
+    with open(file_path, 'r') as dat:
         filereader = reader(dat)
         fields = next(filereader)
         for row in filereader:
